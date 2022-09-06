@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +50,4 @@ Route::apiResources([
 ]);
 
 Route::post('auth/logins',[AuthController::class,'login']);
+Route::get('/upload',[HomeController::class,'uploadForm']);
