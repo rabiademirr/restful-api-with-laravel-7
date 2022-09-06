@@ -5,8 +5,8 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div id="output" class="container"></div>
                     <div class="card-header" style="margin-bottom: 10px;"> UPLOAD FORM</div>
+                    <div id="output" class="container"></div>
                     <form role="form" class="form" onsubmit="return false;">
 
                         <div class="form-control ">
@@ -46,9 +46,9 @@
                     }
                 };
 
-                axios.put('/upload/server', data, config)
+                axios.post('http://127.0.0.1:8000/api/upload', data, config)
                     .then(function (res) {
-                        output.innerHTML = res.data;
+                        output = "<img"+ "src="/ +res.data.name + ">";
                     })
                     .catch(function (err) {
                         output.className = 'text-danger';
