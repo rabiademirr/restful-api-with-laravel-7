@@ -27,4 +27,11 @@ class UploadRequest extends FormRequest
             'uploadFile'=>'required|image|mimes:jpg,png|max:10240'
         ];
     }
+    public function messages() //special error messages
+    {
+        return [
+            'uploadFile.required'=> "Lütfen bir fotoğraf yükleyiniz!",
+            'uploadFile.size'=> "Dosya boyutu 10mb dan büyük olamaz!"
+        ];
+    }
 }
