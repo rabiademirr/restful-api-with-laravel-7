@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\UploadRequest;
 
 class UploadController extends Controller
 {
-    public function upload(Request $request)
+    public function upload(UploadRequest $request)
     {
         $file = $request->file('uploadFile');
         $fileNameWithExtension = $file->getClientOriginalName();
