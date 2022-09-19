@@ -10,10 +10,13 @@ class UploadController extends Controller
     public function upload(UploadRequest $request)
     {
         $file = $request->file('uploadFile');
+        $path = $request->uploadFile->path();
+        $extension = $request->uploadFile->extension();
         $fileNameWithExtension = $file->getClientOriginalName();
+        $fileNameWithExtension = $request->userId . '-' . time() .'.'. $extension;
 
-        if ($file->move(public_path('/'), $fileNameWithExtension)) {
-            $fileUrl = url('/' . $fileNameWithExtension);
+        if ($file->move(public_path('/uploads/'), $fileNameWithExtension)) {
+            $fileUrl = url('/uploads/' . $fileNameWithExtension);
             return response()->json(['url' => $fileUrl]);
         }
 

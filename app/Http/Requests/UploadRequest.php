@@ -30,8 +30,8 @@ class UploadRequest extends FormRequest
     public function messages() //special error messages
     {
         return [
-            'uploadFile.required'=> "Lütfen bir fotoğraf yükleyiniz!",
-            'uploadFile.size'=> "Dosya boyutu 10mb dan büyük olamaz!"
+            'uploadFile.required'=> "Please upload a photo!",
+            'uploadFile.max'=> "File size cannot be larger than 10mb!"
         ];
     }
 }
