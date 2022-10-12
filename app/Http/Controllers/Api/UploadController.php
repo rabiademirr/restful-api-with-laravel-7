@@ -16,9 +16,10 @@ class UploadController extends Controller
         $fileNameWithExtension = $request->userId . '-' . time() .'.'. $extension;
 
         //$path = $request->uploadFile->store('uploads/images');
-         $request->uploadFile->storeAs('uploads/images',$fileNameWithExtension);
+         $request->uploadFile->storeAs('uploads/images',$fileNameWithExtension,'public');
 
-        return response()->json(['uploadFileMessage' => "image uploaded successfully!"]);
+        return response()->json(['uploadFileMessage' => "image uploaded successfully!",
+                                 'uploadFile' => $fileNameWithExtension]);
 
 
     }
