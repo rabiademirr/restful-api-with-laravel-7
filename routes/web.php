@@ -28,4 +28,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/upload',[HomeController::class,'uploadForm']);
+Route::get('/download/{fileName}',[HomeController::class,'download']);
 

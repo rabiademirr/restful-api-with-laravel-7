@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth',['except'=>'uploadForm']);
+        $this->middleware('auth',['except'=>'upload-form']);
     }
 
     /**
@@ -29,4 +30,11 @@ class HomeController extends Controller
     {
         return view('upload-form');
     }
+
+    public function download($fileName)
+    {
+        //return Storage::disk('s3')->download(public_path("uploads/$fileName"));
+        return response()->download(public_path("uploads/$fileName"));
+    }
 }
+
