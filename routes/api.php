@@ -42,7 +42,7 @@ Route::get('categories/report1',[CategoryController::class,'report1']);
 Route::get('products/paginate',[ProductController::class,'paginate']);
 Route::get('products/listwithcategories',[ProductController::class,'listWithCategories']);
 
-Route::middleware('auth:api')->group(function (){
+Route::middleware(['auth:api','throttle:rate_limit,1'])->group(function (){
     Route::apiResources([
         'products' => ProductController::class,
         'users' => UserController::class,
