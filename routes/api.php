@@ -42,11 +42,15 @@ Route::get('categories/report1',[CategoryController::class,'report1']);
 Route::get('products/paginate',[ProductController::class,'paginate']);
 Route::get('products/listwithcategories',[ProductController::class,'listWithCategories']);
 
-Route::apiResources([
-    'products' => ProductController::class,
-    'users' => UserController::class,
-    'categories' =>CategoryController::class
-]);
+Route::middleware('auth:api')->group(function (){
+    Route::apiResources([
+        'products' => ProductController::class,
+        'users' => UserController::class,
+        'categories' =>CategoryController::class
+    ]);
+});
+
+
 
 Route::post('auth/logins',[AuthController::class,'login']);
 Route::post('/upload',[UploadController::class,'upload']);
