@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class ApiLogger
 {
@@ -28,7 +28,12 @@ class ApiLogger
         $logFileContent .= $request->ip();
         $logFileContent .= $request->method();
 
-        Log::info($logFileContent);
+        //Log::info($logFileContent);
+
+        $fileName = 'api_logger_'.date('Y-m-d').'.log';
+
+       Storage::append($fileName,$logFileContent);
+
 
 
     }
