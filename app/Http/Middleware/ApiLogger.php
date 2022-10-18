@@ -20,19 +20,18 @@ class ApiLogger
     {
         return $next($request);
     }
-    public function terminate(Request  $request, Response $response){
+    public function terminate(Request  $request){
         $startTime = LARAVEL_START;
         $endTime = microtime(true);
-        $createdOn = date('Y-m-d H:i:s');
-        $logFileContent = $createdOn .'-'. ($endTime-$startTime)*100 . 'ms';
-        $logFileContent .= $request->ip();
+        $createdOn = date('Y-m-d H:i:s')."\n";
+        $logFileContent = $createdOn .'-'. ($endTime-$startTime)*100 . 'ms'."\n";;
         $logFileContent .= $request->method();
 
         //Log::info($logFileContent);
 
         $fileName = 'api_logger_'.date('Y-m-d').'.log';
 
-       Storage::append($fileName,$logFileContent);
+       Storage::append($fileName,$logFileContent."\n");
 
 
 
