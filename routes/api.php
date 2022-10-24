@@ -35,14 +35,17 @@ Route::get('/users', function () {
 //Route::apiResource('users',UserController::class);
 //Route::apiResource('categories',CategoryController::class);
 
-Route::get('categories/custom1',[CategoryController::class,'custom1'])->middleware('auth:sanctum');
+Route::apiResource('products', ProductController::class);
+
+/*Route::get('categories/custom1',[CategoryController::class,'custom1'])->middleware('auth:sanctum');
 Route::get('products/custom1',[ProductController::class,'custom1']);
 Route::get('products/custom2',[ProductController::class,'custom2']);
 Route::get('categories/report1',[CategoryController::class,'report1']);
 Route::get('products/paginate',[ProductController::class,'paginate']);
 Route::get('products/listwithcategories',[ProductController::class,'listWithCategories']);
+*/
 
-Route::middleware(['auth:api','throttle:rate_limit,1'])->group(function (){
+/*Route::middleware(['auth:api','throttle:rate_limit,1'])->group(function (){
     Route::apiResources([
         'products' => ProductController::class,
         'users' => UserController::class,
