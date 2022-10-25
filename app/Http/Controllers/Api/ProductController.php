@@ -11,23 +11,30 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     *    @OA\Get (
+     *  * @OA\Info(
+     *     version="1.0.0",
+     *     title="Laravel Api Documentation",
+     *     description="This is a sample API documentation.",
+     *     @OA\Contact(email="rabiademirr@gmail.com")
+     * ),
+     *   @OA\Get (
      *     path="/api/products" ,
      *     tags={"product"},
      *     summary="List all products",
      *    @OA\Parameter(
      *     name="limit",
      *     in="query",
-     *     required=false,
+     *     required=true,
      *     description="How many items to return at one time",
+     *     @OA\Schema(
+     *      type="integer",
+     *      format="int32"
+     *      )
      *     ),
      *     @OA\Parameter(
      *     name="offset",
      *     in="query",
-     *     required=false,
+     *     required=true,
      *     description="From which number the number of rows to be returned will start",
      *     ),
      *     @OA\Parameter(
@@ -40,7 +47,12 @@ class ProductController extends Controller
      *     @OA\Response(
      *     response=200,
      *     description="Paginated products",
-     *     @OA\JsonContent()
+     *     @OA\JsonContent(
+     *     type="array",
+     *     @OA\Items(
+     *       ref="#/components/schemas/Product"
+     *     ),
+     *     ),
      *      ),
      *     @OA\Response(
      *     response=401,
@@ -53,6 +65,8 @@ class ProductController extends Controller
      *     @OA\JsonContent()
      *      )
      * )
+     *
+     * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {

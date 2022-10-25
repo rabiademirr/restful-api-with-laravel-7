@@ -15,20 +15,23 @@
                     "product"
                 ],
                 "summary": "List all products",
-                "description": "Display a listing of the resource.",
                 "operationId": "d97d1c3727cbac49708b85f7d11f7d58",
                 "parameters": [
                     {
                         "name": "limit",
                         "in": "query",
                         "description": "How many items to return at one time",
-                        "required": false
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
                     },
                     {
                         "name": "offset",
                         "in": "query",
                         "description": "From which number the number of rows to be returned will start",
-                        "required": false
+                        "required": true
                     },
                     {
                         "name": "search_query",
@@ -42,12 +45,25 @@
                         "description": "Paginated products",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Product"
+                                    }
+                                }
                             }
                         }
                     },
                     "401": {
                         "description": "Unauthorized!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpexted error!",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -60,7 +76,50 @@
     },
     "components": {
         "schemas": {
-            "Product": {}
+            "Product": {
+                "properties": {
+                    "id": {
+                        "schema": "Product",
+                        "description": "id column",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "name": {
+                        "schema": "Product",
+                        "description": "name column",
+                        "type": "string"
+                    },
+                    "slug": {
+                        "schema": "Product",
+                        "description": "slug column",
+                        "type": "string"
+                    },
+                    "description": {
+                        "schema": "Product",
+                        "type": "string"
+                    },
+                    "price": {
+                        "schema": "Product",
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "sku": {
+                        "schema": "Product",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "schema": "Product",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "updated_at": {
+                        "schema": "Product",
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "type": "object"
+            }
         }
     }
 }

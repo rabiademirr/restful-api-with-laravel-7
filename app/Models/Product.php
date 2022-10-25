@@ -4,18 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-
 /**
- * @OA\Info(
- *     version="1.0.0",
- *     title="Laravel Api Documentation",
- *     description="This is a sample API documentation.",
- *     @OA\Contact(email="rabiademirr@gmail.com")
- * )
- * @OA\Schema Product(
+ *   @OA\Schema Product(
  *   title="Product",
- *   description="Product Model"
+ *   description="Product Model",
+ *   type="object",
+ *   schema="Product",
+ *   properties={
+ *   required={"id"},
+ *   @OA\Property(property="id",type="integer", format="int32", description="id column"),
+ *   @OA\Property(property="name",type="string", description="name column"),
+ *   @OA\Property(property="slug",type="string", description="slug column"),
+ *   @OA\Property(property="description",type="string"),
+ *   @OA\Property(property="price",type="double"),
+ *   @OA\Property(property="sku",type="string"),
+ *   @OA\Property(property="created_at",type="date"),
+ *   @OA\Property(property="updated_at",type="date")
+ * },
+ *    required={"id"}
  * )
  */
 class Product extends Model
