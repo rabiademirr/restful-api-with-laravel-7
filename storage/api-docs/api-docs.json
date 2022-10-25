@@ -39,7 +39,20 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Paginated products"
+                        "description": "Paginated products",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     }
                 }
             }

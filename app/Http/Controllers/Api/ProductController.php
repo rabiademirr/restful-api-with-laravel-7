@@ -39,7 +39,18 @@ class ProductController extends Controller
      *
      *     @OA\Response(
      *     response=200,
-     *     description="Paginated products"
+     *     description="Paginated products",
+     *     @OA\JsonContent()
+     *      ),
+     *     @OA\Response(
+     *     response=401,
+     *     description="Unauthorized!",
+     *     @OA\JsonContent()
+     *      ),
+     *     @OA\Response(
+     *     response="default",
+     *     description="Unexpexted error!",
+     *     @OA\JsonContent()
      *      )
      * )
      */
