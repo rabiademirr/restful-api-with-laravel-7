@@ -14,14 +14,33 @@ class ProductController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     * @OA\Get (
+     *    @OA\Get (
      *     path="/api/products" ,
-     *    tags={"product"},
+     *     tags={"product"},
      *     summary="List all products",
-     * @Oa\Response(
+     *    @OA\Parameter(
+     *     name="limit",
+     *     in="query",
+     *     required=false,
+     *     description="How many items to return at one time",
+     *     ),
+     *     @OA\Parameter(
+     *     name="offset",
+     *     in="query",
+     *     required=false,
+     *     description="From which number the number of rows to be returned will start",
+     *     ),
+     *     @OA\Parameter(
+     *     name="search_query",
+     *     in="query",
+     *     required=false,
+     *     description="Value to search in product name field",
+     *     ),
+     *
+     *     @OA\Response(
      *     response=200,
      *     description="Paginated products"
-     * )
+     *      )
      * )
      */
     public function index(Request $request)
