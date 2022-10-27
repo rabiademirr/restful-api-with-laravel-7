@@ -11,14 +11,26 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     /**
-     *  * @OA\Info(
+     *   @OA\Info(
      *     version="1.0.0",
      *     title="Laravel Api Documentation",
      *     description="This is a sample API documentation.",
      *     @OA\Contact(email="rabiademirr@gmail.com")
      * ),
+     *  @OA\Schema(
+     *   title="ApiResponse",
+     *   description="Api Response Model",
+     *   type="object",
+     *   schema="ApiResponse",
+     *   properties={
+     *   @OA\Property(property="success",type="bool"),
+     *   @OA\Property(property="message",type="string"),
+     *   @OA\Property(property="errors",type="object"),
+     *   @OA\Property(property="data",type="object")
+     * },),
      *   @OA\Get (
      *     path="/api/products" ,
+     *     operationId="index",
      *     tags={"product"},
      *     summary="List all products",
      *    @OA\Parameter(
@@ -29,29 +41,26 @@ class ProductController extends Controller
      *     @OA\Schema(
      *      type="integer",
      *      format="int32"
-     *      )
+     *      ),
      *     ),
      *     @OA\Parameter(
      *     name="offset",
      *     in="query",
      *     required=true,
-     *     description="From which number the number of rows to be returned will start",
+     *     description="From which number the number of rows to be returned will start"
      *     ),
      *     @OA\Parameter(
      *     name="search_query",
      *     in="query",
      *     required=false,
-     *     description="Value to search in product name field",
+     *     description="Value to search in product name field"
      *     ),
-     *
      *     @OA\Response(
      *     response=200,
      *     description="Paginated products",
      *     @OA\JsonContent(
      *     type="array",
-     *     @OA\Items(
-     *       ref="#/components/schemas/Product"
-     *     ),
+     *     @OA\Items(ref="#/components/schemas/Product"),
      *     ),
      *      ),
      *     @OA\Response(
@@ -65,7 +74,6 @@ class ProductController extends Controller
      *     @OA\JsonContent()
      *      )
      * )
-     *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -124,11 +132,43 @@ class ProductController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
+     /**
+      *  @OA\Get (
+     *     path="/api/products/{productId}" ,
+     *     operationId="show",
+     *     tags={"product"},
+     *     summary="Info for a spesific product",
+     *    @OA\Parameter(
+     *     name="productId",
+     *     in="path",
+     *     required=true,
+     *     description="Get product by id",
+     *     @OA\Schema(
+     *      type="integer",
+     *      format="int32"
+     *      )
+     *     ),
+     *     @OA\Response(
+     *     response=200,
+     *     description="Get product by id",
+     *     @OA\JsonContent(ref="#/components/schemas/ApiResponse")
+     *      ),
+     *     @OA\Response(
+     *     response=401,
+     *     description="Unauthorized!",
+     *     @OA\JsonContent()
+     *      ),
+     *     @OA\Response(
+     *     response="default",
+     *     description="Unexpexted error!",
+     *     @OA\JsonContent()
+     *      )
+     * )
      *
+     * Display the specified resource.
      * @param \App\Models\Product $product
      * @return \Illuminate\Http\Response
+     *
      */
     public function show($id)
     {
@@ -143,7 +183,6 @@ class ProductController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Product $product
