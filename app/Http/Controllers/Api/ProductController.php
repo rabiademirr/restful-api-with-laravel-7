@@ -104,8 +104,32 @@ class ProductController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     *  @OA\POST (
+     *     path="/api/products" ,
+     *     operationId="store",
+     *     tags={"product"},
+     *     summary="Create a Product",
+     *     @OA\RequestBody(
+     *     required=true,
+     *     description="Store a product",
+     *      @OA\JsonContent(ref="#/components/schemas/Product")
+     *     ),
+     *     @OA\Response(
+     *     response=201,
+     *     description="Store a product",
+     *     @OA\JsonContent(ref="#/components/schemas/ApiResponse")
+     *      ),
+     *     @OA\Response(
+     *     response=401,
+     *     description="Unauthorized!",
+     *     @OA\JsonContent()
+     *      ),
+     *     @OA\Response(
+     *     response="default",
+     *     description="Unexpexted error!",
+     *     @OA\JsonContent()
+     *      )
+     * )
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
@@ -183,6 +207,42 @@ class ProductController extends Controller
     }
 
     /**
+     *  @OA\PUT (
+     *     path="/api/products/{productId}" ,
+     *     operationId="update",
+     *     tags={"product"},
+     *     summary="Update a Product",
+     *      @OA\Parameter(
+     *     name="productId",
+     *     in="path",
+     *     required=true,
+     *     description="To update",
+     *     @OA\Schema(
+     *      type="integer",
+     *      format="int32"
+     *      )
+     *     ),
+     *     @OA\RequestBody(
+     *     required=true,
+     *     description="Update a product",
+     *      @OA\JsonContent(ref="#/components/schemas/Product")
+     *     ),
+     *     @OA\Response(
+     *     response=200,
+     *     description="Product updated",
+     *     @OA\JsonContent(ref="#/components/schemas/ApiResponse")
+     *      ),
+     *     @OA\Response(
+     *     response=401,
+     *     description="Unauthorized!",
+     *     @OA\JsonContent()
+     *      ),
+     *     @OA\Response(
+     *     response="default",
+     *     description="Unexpexted error!",
+     *     @OA\JsonContent()
+     *      )
+     * )
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Product $product

@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  *   @OA\Property(property="name",type="string", description="name column"),
  *   @OA\Property(property="slug",type="string", description="slug column"),
  *   @OA\Property(property="description",type="string"),
- *   @OA\Property(property="price",type="double"),
+ *   @OA\Property(property="price",type="number"),
  *   @OA\Property(property="sku",type="string"),
  *   @OA\Property(property="created_at",type="date"),
  *   @OA\Property(property="updated_at",type="date")
