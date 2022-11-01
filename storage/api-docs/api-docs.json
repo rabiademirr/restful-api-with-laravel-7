@@ -12,7 +12,7 @@
         "/api/products": {
             "get": {
                 "tags": [
-                    "product"
+                    "Product"
                 ],
                 "summary": "List all products",
                 "operationId": "index",
@@ -70,11 +70,16 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "api_token": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
-                    "product"
+                    "Product"
                 ],
                 "summary": "Create a Product",
                 "operationId": "store",
@@ -116,13 +121,18 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "api_token": []
+                    }
+                ]
             }
         },
         "/api/products/{productId}": {
             "get": {
                 "tags": [
-                    "product"
+                    "Product"
                 ],
                 "summary": "Info for a spesific product",
                 "operationId": "show",
@@ -169,7 +179,7 @@
             },
             "put": {
                 "tags": [
-                    "product"
+                    "Product"
                 ],
                 "summary": "Update a Product",
                 "operationId": "update",
@@ -223,11 +233,16 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "api_token": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
-                    "product"
+                    "Product"
                 ],
                 "summary": "Delete a Product",
                 "operationId": "delete",
@@ -270,7 +285,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "api_token": []
+                    }
+                ]
             }
         }
     },
@@ -338,11 +358,23 @@
                 },
                 "type": "object"
             }
+        },
+        "securitySchemes": {
+            "api_token": {
+                "type": "apiKey",
+                "name": "api_token",
+                "in": "query"
+            },
+            "bearer_token": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
         }
     },
     "tags": [
         {
-            "name": "product",
+            "name": "Product",
             "description": "Product Model",
             "externalDocs": {
                 "description": "Find out more",

@@ -17,8 +17,20 @@ class ProductController extends ApiController
      *     description="This is a sample API documentation.",
      *     @OA\Contact(email="rabiademirr@gmail.com")
      * ),
+     *  @OA\SecurityScheme(
+     *      type = "apiKey",
+     *      name = "api_token",
+     *      securityScheme = "api_token",
+     *      in="query"
+     *       ),
+     *     @OA\SecurityScheme(
+     *      type = "http",
+     *      securityScheme = "bearer_token",
+     *      scheme = "bearer",
+     *      bearerFormat="JWT"
+     *       ),
      *   @OA\TAG(
-     *     name="product",
+     *     name="Product",
      *     description="Product Model",
      *     @OA\ExternalDocumentation(
      *       description="Find out more",
@@ -39,7 +51,7 @@ class ProductController extends ApiController
      *   @OA\Get (
      *     path="/api/products" ,
      *     operationId="index",
-     *     tags={"product"},
+     *     tags={"Product"},
      *     summary="List all products",
      *    @OA\Parameter(
      *     name="limit",
@@ -80,7 +92,10 @@ class ProductController extends ApiController
      *     response="default",
      *     description="Unexpexted error!",
      *     @OA\JsonContent()
-     *      )
+     *      ),
+     *     security = {
+     *     { "api_token"= {}}
+     *     }
      * )
      * @return \Illuminate\Http\Response
      */
@@ -115,7 +130,7 @@ class ProductController extends ApiController
      *  @OA\POST (
      *     path="/api/products" ,
      *     operationId="store",
-     *     tags={"product"},
+     *     tags={"Product"},
      *     summary="Create a Product",
      *     @OA\RequestBody(
      *     required=true,
@@ -136,7 +151,10 @@ class ProductController extends ApiController
      *     response="default",
      *     description="Unexpexted error!",
      *     @OA\JsonContent()
-     *      )
+     *      ),
+     *    security = {
+     *     { "api_token"= {}}
+     *     }
      * )
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -168,7 +186,7 @@ class ProductController extends ApiController
       *  @OA\Get (
      *     path="/api/products/{productId}" ,
      *     operationId="show",
-     *     tags={"product"},
+     *     tags={"Product"},
      *     summary="Info for a spesific product",
      *    @OA\Parameter(
      *     name="productId",
@@ -194,7 +212,10 @@ class ProductController extends ApiController
      *     response="default",
      *     description="Unexpexted error!",
      *     @OA\JsonContent()
-     *      )
+     *      ),),
+     *       security = {
+     *     { "api_token"= {}}
+     *      }
      * )
      *
      * Display the specified resource.
@@ -218,7 +239,7 @@ class ProductController extends ApiController
      *  @OA\PUT (
      *     path="/api/products/{productId}" ,
      *     operationId="update",
-     *     tags={"product"},
+     *     tags={"Product"},
      *     summary="Update a Product",
      *      @OA\Parameter(
      *     name="productId",
@@ -249,7 +270,10 @@ class ProductController extends ApiController
      *     response="default",
      *     description="Unexpexted error!",
      *     @OA\JsonContent()
-     *      )
+     *      ),
+     *    security = {
+     *     { "api_token"= {}}
+     *      }
      * )
      *
      * @param \Illuminate\Http\Request $request
@@ -274,7 +298,7 @@ class ProductController extends ApiController
      *  @OA\DELETE (
      *     path="/api/products/{productId}" ,
      *     operationId="delete",
-     *     tags={"product"},
+     *     tags={"Product"},
      *     summary="Delete a Product",
      *      @OA\Parameter(
      *     name="productId",
@@ -300,8 +324,11 @@ class ProductController extends ApiController
      *     response="default",
      *     description="Unexpexted error!",
      *     @OA\JsonContent()
-     *      )
-     * )     *
+     *      ),
+     *     security = {
+     *     { "api_token"= {}}
+     *      }
+     * )
      * @param \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
