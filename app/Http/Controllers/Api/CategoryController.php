@@ -93,7 +93,7 @@ class CategoryController extends ApiController
        /* return response([
             'message'=>'Category deleted!'
         ],200);*/
-        return $this->apiResponse($category,'Category deleted!');
+        return $this->apiResponse($category,'Category deleted!',200);
     }
 
     public function custom1()

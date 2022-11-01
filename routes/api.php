@@ -45,13 +45,13 @@ Route::get('products/paginate',[ProductController::class,'paginate']);
 Route::get('products/listwithcategories',[ProductController::class,'listWithCategories']);
 
 
-//Route::middleware(['auth:api','throttle:rate_limit,1'])->group(function (){
+Route::middleware(['auth:api','throttle:rate_limit,1'])->group(function (){
     Route::apiResources([
         'products' => ProductController::class,
         'users' => UserController::class,
         'categories' =>CategoryController::class
     ]);
-//});
+});
 
 
 

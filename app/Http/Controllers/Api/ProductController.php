@@ -8,7 +8,7 @@ use App\Http\Resources\ProductsWithCategoriesResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductController extends ApiController
 {
     /**
      *   @OA\Info(
@@ -17,6 +17,14 @@ class ProductController extends Controller
      *     description="This is a sample API documentation.",
      *     @OA\Contact(email="rabiademirr@gmail.com")
      * ),
+     *   @OA\TAG(
+     *     name="product",
+     *     description="Product Model",
+     *     @OA\ExternalDocumentation(
+     *       description="Find out more",
+     *       url="https://swagger.io/solutions/api-documentation"
+     * )
+     *     ),
      *  @OA\Schema(
      *   title="ApiResponse",
      *   description="Api Response Model",
@@ -259,13 +267,41 @@ class ProductController extends Controller
         $product->sku = $request->sku;
         $product->save();
 
-        return response(['data' => $product,
-            'message' => 'Product updated'], 200);
+        return $this->apiResponse($product, 'Product updated!', 200);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
+     *  @OA\DELETE (
+     *     path="/api/products/{productId}" ,
+     *     operationId="delete",
+     *     tags={"product"},
+     *     summary="Delete a Product",
+     *      @OA\Parameter(
+     *     name="productId",
+     *     in="path",
+     *     required=true,
+     *     description="To delete",
+     *     @OA\Schema(
+     *      type="integer",
+     *      format="int32"
+     *      )
+     *     ),
+     *     @OA\Response(
+     *     response=200,
+     *     description="Product deleted",
+     *     @OA\JsonContent(ref="#/components/schemas/ApiResponse")
+     *      ),
+     *     @OA\Response(
+     *     response=401,
+     *     description="Unauthorized!",
+     *     @OA\JsonContent()
+     *      ),
+     *     @OA\Response(
+     *     response="default",
+     *     description="Unexpexted error!",
+     *     @OA\JsonContent()
+     *      )
+     * )     *
      * @param \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
@@ -273,8 +309,7 @@ class ProductController extends Controller
     {
 
         $product->delete();
-
-        return response(['message' => 'Product deleted'], 200);
+        return $this->apiResponse($product, 'Product deleted!', 200);
     }
 
     public function custom1()

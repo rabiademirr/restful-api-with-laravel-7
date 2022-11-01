@@ -224,6 +224,53 @@
                         }
                     }
                 }
+            },
+            "delete": {
+                "tags": [
+                    "product"
+                ],
+                "summary": "Delete a Product",
+                "operationId": "delete",
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "description": "To delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Product deleted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpexted error!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
             }
         }
     },
@@ -292,5 +339,15 @@
                 "type": "object"
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "product",
+            "description": "Product Model",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "https://swagger.io/solutions/api-documentation"
+            }
+        }
+    ]
 }
